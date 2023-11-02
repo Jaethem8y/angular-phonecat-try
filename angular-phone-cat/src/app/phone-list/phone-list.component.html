@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
+
+      <p>
+        Search:
+        <input (input)="onQuery($event)" />
+      </p>
+      <p>
+        Sort by:
+        <select [(ngModel)]="orderProp" (change)="onChange()" default>
+          <option value="alphabetical">Alphabetical</option>
+          <option value="newest">Newest</option>
+        </select>
+      </p>
+    </div>
+    <div class="col-md-10">
+
+      <!--Body content-->
+      <div class="wrapper" *ngIf="showList">
+        <ul [@listAnimation]="phones ? phones.length : 0" class="phones">
+
+          <li *ngFor="let phone of phones" class="thumbnail phone-list-item">
+
+            <a [routerLink]="['/phones', phone.id]" class="thumb">
+              <img [src]="'assets/'+phone.imageUrl" alt="{{phone.name}}" />
+            </a>
+            <a [routerLink]="['/phones', phone.id]" class="ng-binding"> {{phone.name}} </a>
+            <p class="ng-binding"> {{phone.snippet}}</p>
+          </li>
+        </ul>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
